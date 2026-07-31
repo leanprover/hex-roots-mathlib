@@ -9,12 +9,12 @@ leanOptions = [
 [[require]]
 name = "HexRoots"
 git = "https://github.com/leanprover/hex-roots.git"
-rev = "5d806cdd49decc70e26a3b5de87c0e6507e3d700"
+rev = "207186f3df028d7d9cb75aeea7e8f3ce7c2c4601"
 
 [[require]]
 name = "HexPolyZMathlib"
 git = "https://github.com/leanprover/hex-poly-z-mathlib.git"
-rev = "04198bd58704d5339431b82519ca963162669a2d"
+rev = "d9097b71aa14539fc6c501eafbc6f4f21c7dbbbf"
 
 [[require]]
 name = "mathlib"
