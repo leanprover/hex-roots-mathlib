@@ -153,10 +153,10 @@ private theorem certifyNK_one {p : Hex.ZPoly} {c : Hex.Component}
   split <;> rename_i hbase'
   · split <;> rename_i hins
     · split <;> rename_i hcand
-      · refine ⟨⟨_, Or.inl hcand⟩, rfl, ?_⟩
+      · refine ⟨⟨_, .nk hcand⟩, rfl, ?_⟩
         exact newtonCandidate_prec hsize
-      · exact ⟨⟨_, Or.inl hbase'⟩, rfl, le_rfl⟩
-    · exact ⟨⟨_, Or.inl hbase'⟩, rfl, le_rfl⟩
+      · exact ⟨⟨_, .nk hbase'⟩, rfl, le_rfl⟩
+    · exact ⟨⟨_, .nk hbase'⟩, rfl, le_rfl⟩
   · exact (hbase' hbase).elim
 
 /-- The mixed strategy has the identical successful NK prefix. -/
@@ -170,10 +170,10 @@ private theorem certifyMixed_one {p : Hex.ZPoly} {c : Hex.Component}
   split <;> rename_i hbase'
   · split <;> rename_i hins
     · split <;> rename_i hcand
-      · refine ⟨⟨_, Or.inl hcand⟩, rfl, ?_⟩
+      · refine ⟨⟨_, .nk hcand⟩, rfl, ?_⟩
         exact newtonCandidate_prec hsize
-      · exact ⟨⟨_, Or.inl hbase'⟩, rfl, le_rfl⟩
-    · exact ⟨⟨_, Or.inl hbase'⟩, rfl, le_rfl⟩
+      · exact ⟨⟨_, .nk hbase'⟩, rfl, le_rfl⟩
+    · exact ⟨⟨_, .nk hbase'⟩, rfl, le_rfl⟩
   · exact (hbase' hbase).elim
 
 /-- A member of a globally normalized round is one level finer than every
@@ -1006,7 +1006,8 @@ theorem refineAll_allReady {p : Hex.ZPoly}
     refineAll_component_certifies hp hsize hsep hdepth htarget hprec hcover
       strategy (Array.mem_toList_iff.mpr hc)
   simp only [hcert]
-  simpa only [Hex.Certified.square, decide_eq_true_eq] using hiso
+  exact decide_eq_true (show target ≤ (Hex.Certified.square (.atom iso)).prec by
+    simpa only [Hex.Certified.square] using hiso)
 
 /-- Successful attempts on the final normalized worklist pass the exact
 pairwise disc-disjointness check. -/
